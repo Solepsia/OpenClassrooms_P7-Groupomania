@@ -1,0 +1,15 @@
+.banner {
+    color: black;
+    text-align: right;
+    padding: 32px;
+    border-bottom: solid 3px black;
+}
+
+.title {
+    padding-left: 32px;
+}
+
+.logo {
+    height: 250px;
+    width: 250px;
+}
