@@ -1,5 +1,4 @@
 import React from 'react'
-import { post } from '../../../backend/app'
 
 class Post extends React.Component {
 
