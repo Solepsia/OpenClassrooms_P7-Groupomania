@@ -22,8 +22,9 @@ function Timeline ({/* setToken */}) {
     }
 
     useEffect(() => {
+        console.log("erf")
         getPosts();
-    });
+    }, []);
 
     return (
         <Grid>

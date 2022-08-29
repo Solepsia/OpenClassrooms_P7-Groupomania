@@ -6,7 +6,6 @@ function Post ({ post }) {
     
     const handleRemovePost = (event) => {
         event.preventDefault();
-        console.log(post);
         fetch(`http://localhost:4200/api/post/${post._id}`, {
             method: 'DELETE',
             headers: {
@@ -25,11 +24,17 @@ function Post ({ post }) {
         })
     }
 
+    const handleEditPost = (event) => {
+        event.preventDefault();
+        window.location.href = "/editPost";
+    }
+
 return (
     <Card className='post' variant='outlined'>
-        <div className='post__content'>{post.content}</div>
-        <div>[COMPOSANT LIKE/DISLIKE]</div>
-        <Button>EDIT</Button>
+        <Card className='post__content'>{post.content}</Card>
+        <Button>+1</Button>
+        <Button>-1</Button>
+        <Button onClick={handleEditPost}>EDIT</Button>
         <Button onClick={handleRemovePost}>REMOVE</Button>
     </Card>
     )
