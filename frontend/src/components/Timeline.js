@@ -1,4 +1,4 @@
-import Grid from "@mui/material";
+import { Grid } from "@mui/material";
 import React, { useEffect, useState } from 'react'
 import Post from './Post'
 
@@ -26,11 +26,11 @@ function Timeline ({/* setToken */}) {
     });
 
     return (
-        <div>
+        <Grid>
             {posts.map( (post) => (
                 <Post key={post._id} post={post}/>
             ))}
-        </div>
+        </Grid>
     )
 }
 
