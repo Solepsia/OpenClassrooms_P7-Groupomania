@@ -1,39 +1,37 @@
-import { postList } from '../data/postList'
-import React from 'react'
+import Grid from "@mui/material";
+import React, { useEffect, useState } from 'react'
+import Post from './Post'
 
-class Timeline extends React.Component {
+function Timeline ({/* setToken */}) {
 
-    constructor (props) {
-        super(props)
-        this.state = { posts: [] }
+    const [posts, setPosts] = useState([]);
+
+    const getPosts = () => {
+        fetch('http://localhost:4200/api/post')
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+        })
+        .then(res => {
+            setPosts(res)
+        })
+        .catch((err) => {
+            console.error('err: ', err);
+        })
     }
 
-    getPosts () {
-        // fetch('localhost:3000/api/data')
-        // .then((data) => {
-            // this.setState({ posts: data })
-        // })
+    useEffect(() => {
+        getPosts();
+    });
 
-        this.setState({ posts: postList})
-    }
-
-    componentDidMount () {
-        this.getPosts()
-    }
-
-    render () {
     return (
-        <ul>
-            {this.state.posts.map( (post) => (
-                <li key={post.id}>{post.title}&nbsp;
-                {post.likes > 0 && <span>( ˘ ³˘)♥</span>}
-                {post.likes < 0 && <span>( ಠ ʖ̯ ಠ)</span>}
-                {post.likes === 0 && <span>¯\_(ツ)_/¯</span>}
-                </li>
+        <div>
+            {posts.map( (post) => (
+                <Post key={post._id} post={post}/>
             ))}
-        </ul>
+        </div>
     )
-    }
 }
 
 export default Timeline

@@ -1,14 +1,14 @@
 import { Button, TextField } from "@mui/material";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import PropTypes from 'prop-types';
 
-function LogIn () {
+function LogIn ({ setToken }) {
     const defaultValues = {
         email: "",
         password: ""
     }
     const [formValues, setFormValues] = useState(defaultValues)
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -32,8 +32,11 @@ function LogIn () {
             return(value.json())
         })
         .then (value => {
+            // saveToken(value.token);
+            setToken(value.token)
             if (value) {
-                navigate('/')
+                // navigate('/')
+                window.location.href = "/";
             }
         })
         .catch (err => {
@@ -50,6 +53,7 @@ function LogIn () {
             type="email"
             value={formValues.name}
             onChange={handleInputChange}
+            required
         />
         <TextField
             id="passwordInput"
@@ -58,10 +62,15 @@ function LogIn () {
             type="password"
             value={formValues.password}
             onChange={handleInputChange}
+            required
         />
         <Button type="submit">CONNEXION</Button>
     </form>
     )
+}
+
+LogIn.propTypes = {
+    setToken: PropTypes.func.isRequired
 }
 
 export default LogIn

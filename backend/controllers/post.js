@@ -4,7 +4,7 @@ const fs = require('fs');
 const Post = require('../models/post');
 
 exports.getAllPosts = (req, res, next) => {
-    Post.find()
+    Post.find().sort({timestamp:-1})
         .then(posts => res.status(200).json(posts))
         .catch(error => res.status(400).json({ error }));
 };
@@ -16,7 +16,7 @@ exports.getOnePost = (req, res, next) => {
 };
 
 exports.createPost = (req, res, next) => {
-    const postObject = JSON.parse(req.body.post);
+    const postObject = req.body;
     delete postObject._id;
     delete postObject._userId;
     const post = new Post({
