@@ -10,8 +10,4 @@ function Banner({token}) {
     return <BannerNotLoggedIn />
 }
 
-
-// si user pas log : Logo, bouton "Log In" => page de connexion, bouton "Inscription" => page d'inscription
-// si user log : Logo, bouton "New Post" => page de création de post, bouton "Log Out" => sessionStorage.clear() => reload
-
 export default Banner
