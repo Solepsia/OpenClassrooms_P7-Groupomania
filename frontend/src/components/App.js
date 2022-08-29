@@ -25,7 +25,6 @@ function App() {
           <Route path='/' element={<Timeline />}/>
           <Route path='/signup' element={<SignUp />}/>
           <Route path='/newPost' element={<NewPost token={token}/>}/>
-          <Route path='/editPost' element={<EditPost token={token}/>}/>
         </Switch>
       </div>
     </Router>

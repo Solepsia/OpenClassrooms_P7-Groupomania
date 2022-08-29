@@ -1,8 +1,9 @@
 import { Button, Card } from "@mui/material";
 import React, { useEffect } from 'react';
 import getToken from "./token/getToken";
+import { Link } from "react-router-dom";
 
-function Post ({ post }) {
+function Post ({ post, setEditable }) {
     
     const handleRemovePost = (event) => {
         event.preventDefault();
@@ -26,7 +27,7 @@ function Post ({ post }) {
 
     const handleEditPost = (event) => {
         event.preventDefault();
-        window.location.href = "/editPost";
+        setEditable({id: post._id, isEditable: true});
     }
 
 return (
