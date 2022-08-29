@@ -1,7 +1,7 @@
 import { Button, Card } from "@mui/material";
-import React, { useEffect } from 'react';
-import getToken from "./token/getToken";
-import { Link } from "react-router-dom";
+import React from 'react';
+import getToken from "./auth-service/getToken";
+import getUserID from './auth-service/getUserID';
 
 function Post ({ post, setEditable }) {
     
@@ -18,6 +18,9 @@ function Post ({ post, setEditable }) {
                 return(res.json());
             }
         })
+        .then((val) => {
+            setEditable({id: null, isEditable: false})
+        })
         .catch(err => {
             if (err) {
                 console.error(err);
@@ -30,15 +33,25 @@ function Post ({ post, setEditable }) {
         setEditable({id: post._id, isEditable: true});
     }
 
-return (
-    <Card className='post' variant='outlined'>
-        <Card className='post__content'>{post.content}</Card>
-        <Button>+1</Button>
-        <Button>-1</Button>
-        <Button onClick={handleEditPost}>EDIT</Button>
-        <Button onClick={handleRemovePost}>REMOVE</Button>
-    </Card>
-    )
+    if (post.userId === getUserID()) {
+        return (
+            <Card className='post' variant='outlined'>
+                <Card className='post__content'>{post.content}</Card>
+                <Button>+1</Button>
+                <Button>-1</Button>
+                <Button onClick={handleEditPost}>EDIT</Button>
+                <Button onClick={handleRemovePost}>REMOVE</Button>
+            </Card>
+        )
+    } else {
+        return (
+            <Card className='post' variant='outlined'>
+                <Card className='post__content'>{post.content}</Card>
+                <Button>+1</Button>
+                <Button>-1</Button>
+            </Card>
+        )
+    }
 }
 
 export default Post

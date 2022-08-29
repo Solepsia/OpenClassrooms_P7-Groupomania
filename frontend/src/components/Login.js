@@ -1,6 +1,7 @@
 import { Button, TextField } from "@mui/material";
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
+import saveUserID from './auth-service/saveUserID'
 
 function LogIn ({ setToken }) {
     const defaultValues = {
@@ -32,7 +33,7 @@ function LogIn ({ setToken }) {
             return(value.json())
         })
         .then (value => {
-            // saveToken(value.token);
+            saveUserID(value.userId)
             setToken(value.token)
             if (value) {
                 // navigate('/')

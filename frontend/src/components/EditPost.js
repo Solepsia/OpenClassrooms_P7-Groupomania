@@ -1,7 +1,7 @@
 import { Button, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import getToken from "./token/getToken";
+import getToken from "./auth-service/getToken";
 
 function EditPost ({post, setEditable}) {
 
