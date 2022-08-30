@@ -28,7 +28,7 @@ function Timeline () {
     }, [editable]);
 
     return (
-        <Grid>
+        <Grid container spacing={2}>
             {postList.map( (post) => {
                 if (editable.id == post._id && editable.isEditable) {
                     return (<EditPost key={post._id} post={post} setEditable={setEditable}/>)

@@ -2,7 +2,7 @@ import { Button, Card } from "@mui/material";
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-
+import CardActions from '@mui/material/CardActions';
 import React, { useContext } from 'react';
 import { UserContext } from "./App";
 import Like from "./Like";
@@ -50,9 +50,11 @@ function Post ({ post, setEditable }) {
                         {post.content}
                     </Typography>
                 </CardContent>
-                <Like post={post} setEditable={setEditable}/>
-                <Button onClick={handleEditPost}>EDIT</Button>
-                <Button onClick={handleRemovePost}>REMOVE</Button>
+                <CardActions disableSpacing>
+                    <Like post={post} setEditable={setEditable}/>
+                    <Button onClick={handleEditPost}>EDIT</Button>
+                    <Button onClick={handleRemovePost}>REMOVE</Button>
+                </CardActions>
             </Card>
         )
     } else {
@@ -66,7 +68,9 @@ function Post ({ post, setEditable }) {
                         {post.content}
                     </Typography>
                 </CardContent>
-                <Like post={post} setEditable={setEditable}/>
+                <CardActions disableSpacing>
+                    <Like post={post} setEditable={setEditable}/>
+                </CardActions>
             </Card>
         )
     }
