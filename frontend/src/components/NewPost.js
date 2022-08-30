@@ -13,6 +13,8 @@ function NewPost () {
     const [formValues, setFormValues] = useState(defaultValues)
     const [image, setImage] = useState()
 
+    const formData = new FormData();
+
     const navigate = useNavigate();
 
     const handleInputChange = (event) => {
@@ -25,14 +27,16 @@ function NewPost () {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        formData.append('content', formValues.content)
+        if (image) {
+            formData.append('file', image)
+        }
         fetch('http://localhost:4200/api/post/', {
             method: 'POST',
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${user.token}`
             },
-            body: JSON.stringify(formValues)
+            body: formData
         })
         .then (value => {
             return(value.json())

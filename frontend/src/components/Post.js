@@ -1,8 +1,10 @@
 import { Button, Card } from "@mui/material";
-import React, { useContext, useState } from 'react';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+
+import React, { useContext } from 'react';
 import { UserContext } from "./App";
-import getToken from "./auth-service/getToken";
-import getUserID from './auth-service/getUserID';
 import Like from "./Like";
 
 function Post ({ post, setEditable }) {
@@ -39,8 +41,15 @@ function Post ({ post, setEditable }) {
 
     if (post.userId === user.userId) {
         return (
-            <Card className='post' variant='outlined'>
-                <Card className='post__content'>{post.content}</Card>
+            <Card sx={{ maxWidth: 345 }} className='post' variant='outlined'>
+                {post.imageUrl && (
+                    <CardMedia alt={post.imageUrl} component="img" height="194" image={post.imageUrl} />
+                )}
+                <CardContent className='post__content'>
+                    <Typography variant="body2" color="text.secondary">
+                        {post.content}
+                    </Typography>
+                </CardContent>
                 <Like post={post} setEditable={setEditable}/>
                 <Button onClick={handleEditPost}>EDIT</Button>
                 <Button onClick={handleRemovePost}>REMOVE</Button>
@@ -48,8 +57,15 @@ function Post ({ post, setEditable }) {
         )
     } else {
         return (
-            <Card className='post' variant='outlined'>
-                <Card className='post__content'>{post.content}</Card>
+            <Card sx={{ maxWidth: 345 }} className='post' variant='outlined'>
+                {post.imageUrl && (
+                    <CardMedia alt={post.imageUrl} component="img" height="194" image={post.imageUrl} />
+                )}
+                <CardContent className='post__content'>
+                    <Typography variant="body2" color="text.secondary">
+                        {post.content}
+                    </Typography>
+                </CardContent>
                 <Like post={post} setEditable={setEditable}/>
             </Card>
         )

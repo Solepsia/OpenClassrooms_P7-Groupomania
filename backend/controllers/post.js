@@ -23,7 +23,7 @@ exports.createPost = (req, res, next) => {
         ...postObject,
         userId: req.auth.userId,
         timestamp: Date.now(),
-        imageUrl: req.body.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null,
+        imageUrl: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null,
         likes: parseInt(0),
         dislikes: parseInt(0),
         usersLiked: [],
