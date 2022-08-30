@@ -1,9 +1,11 @@
 import { Button, TextField } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "./App";
 
-function NewPost ({token}) {
+function NewPost () {
 
+    const user = useContext(UserContext)
     const defaultValues = {
         content: "",
     }
@@ -26,7 +28,7 @@ function NewPost ({token}) {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${user.token}`
             },
             body: JSON.stringify(formValues)
         })

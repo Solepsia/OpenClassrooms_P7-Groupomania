@@ -1,16 +1,15 @@
 import { Button, TextField } from "@mui/material";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import getToken from "./auth-service/getToken";
+import React, { useContext, useState } from "react";
+import { UserContext } from "./App";
 
 function EditPost ({post, setEditable}) {
+
+    const user = useContext(UserContext);
 
     const defaultValues = {
         content: "",
     }
     const [formValues, setFormValues] = useState(defaultValues)
-
-    const navigate = useNavigate();
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -27,7 +26,7 @@ function EditPost ({post, setEditable}) {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${getToken()}`
+                'Authorization': `Bearer ${user.token}`
             },
             body: JSON.stringify(formValues)
         })

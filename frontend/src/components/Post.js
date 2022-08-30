@@ -2,6 +2,7 @@ import { Button, Card } from "@mui/material";
 import React from 'react';
 import getToken from "./auth-service/getToken";
 import getUserID from './auth-service/getUserID';
+import Like from "./Like";
 
 function Post ({ post, setEditable }) {
     
@@ -18,7 +19,7 @@ function Post ({ post, setEditable }) {
                 return(res.json());
             }
         })
-        .then((val) => {
+        .then(() => {
             setEditable({id: null, isEditable: false})
         })
         .catch(err => {
@@ -37,8 +38,7 @@ function Post ({ post, setEditable }) {
         return (
             <Card className='post' variant='outlined'>
                 <Card className='post__content'>{post.content}</Card>
-                <Button>+1</Button>
-                <Button>-1</Button>
+                <Like />
                 <Button onClick={handleEditPost}>EDIT</Button>
                 <Button onClick={handleRemovePost}>REMOVE</Button>
             </Card>
@@ -47,8 +47,7 @@ function Post ({ post, setEditable }) {
         return (
             <Card className='post' variant='outlined'>
                 <Card className='post__content'>{post.content}</Card>
-                <Button>+1</Button>
-                <Button>-1</Button>
+                <Like />
             </Card>
         )
     }
