@@ -13,9 +13,11 @@ function useUser() {
     const [user, setUser] = useState(localInfo);
     
     const editUser = (user) => {
+        if (user) {
         setUser(user);
         saveUserID(user.userId);
         saveToken(user.token);
+        }
     }
     
     return {

@@ -33,6 +33,7 @@ function LogIn ({ setUser }) {
             if (res.ok) {
                 return(res.json())
             }
+            alert('Invalid user/password pair')
         })
         .then (user => {
             setUser(user);
