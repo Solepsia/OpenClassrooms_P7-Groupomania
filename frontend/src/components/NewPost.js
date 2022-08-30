@@ -1,7 +1,8 @@
-import { Button, TextField } from "@mui/material";
+import { Button, IconButton, TextField } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./App";
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
 function NewPost () {
 
@@ -10,6 +11,7 @@ function NewPost () {
         content: "",
     }
     const [formValues, setFormValues] = useState(defaultValues)
+    const [image, setImage] = useState()
 
     const navigate = useNavigate();
 
@@ -33,7 +35,6 @@ function NewPost () {
             body: JSON.stringify(formValues)
         })
         .then (value => {
-            console.log(value)
             return(value.json())
         })
         .then (value => {
@@ -44,6 +45,10 @@ function NewPost () {
         .catch (err => {
             if (err) { console.error(err) }
         })
+    }
+
+    const handleAddImages = (event) => {
+        setImage(event.target.files[0])
     }
 
     return (
@@ -57,7 +62,15 @@ function NewPost () {
                 onChange={handleInputChange}
                 required
             />
-            <Button type="submit">PUBLIER</Button>
+            <IconButton color="primary" aria-label="upload picture" component="label">
+                <input hidden accept="image/*" type="file" onChange={handleAddImages} />
+                <AddPhotoAlternateIcon color="inherit"/>
+            </IconButton>
+            {image && (
+                <img alt={image.name} width={"250px"} src={URL.createObjectURL(image)} />
+            )}
+            
+            <Button type="submit">SHARE</Button>
         </form>
         )
 }
