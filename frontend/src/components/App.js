@@ -8,9 +8,7 @@ import {
   Routes as Switch,
   Route 
 } from 'react-router-dom';
-// import useToken from './auth-service/useToken';
-import { createContext, useState } from 'react'
-// import getToken from './auth-service/getToken'
+import { createContext } from 'react'
 import useUser from './auth-service/useUser'
 
 export const UserContext = createContext();
@@ -18,7 +16,6 @@ export const UserContext = createContext();
 function App() {
 
   const {user, setUser} = useUser();
-  // const {token, setToken} = useToken();
   
   return (
     <UserContext.Provider value={user}>
