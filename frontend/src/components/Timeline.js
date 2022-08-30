@@ -3,12 +3,12 @@ import React, { useEffect, useState } from 'react'
 import Post from './Post'
 import EditPost from "./EditPost";
 
-function Timeline ({/* setToken */}) {
+function Timeline () {
 
-    const [posts, setPosts] = useState([]);
+    const [postList, setPostList] = useState([]);
     const [editable, setEditable] = useState({id: null, isEditable: false});
 
-    const getPosts = () => {
+    const getPostList = () => {
         fetch('http://localhost:4200/api/post')
         .then(res => {
             if (res.ok) {
@@ -16,7 +16,7 @@ function Timeline ({/* setToken */}) {
             }
         })
         .then(res => {
-            setPosts(res)
+            setPostList(res)
         })
         .catch((err) => {
             console.error('err: ', err);
@@ -24,12 +24,12 @@ function Timeline ({/* setToken */}) {
     }
 
     useEffect(() => {
-        getPosts();
+        getPostList();
     }, [editable]);
 
     return (
         <Grid>
-            {posts.map( (post) => {
+            {postList.map( (post) => {
                 if (editable.id == post._id && editable.isEditable) {
                     return (<EditPost key={post._id} post={post} setEditable={setEditable}/>)
                 } else {
