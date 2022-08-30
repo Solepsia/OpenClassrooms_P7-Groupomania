@@ -2,7 +2,7 @@ import { Button, TextField } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { UserContext } from "./App";
 
-function EditPost ({post, setEditable}) {
+function EditPost ({ post, setEditable }) {
 
     const user = useContext(UserContext);
 
@@ -31,7 +31,6 @@ function EditPost ({post, setEditable}) {
             body: JSON.stringify(formValues)
         })
         .then (value => {
-            console.log(value)
             return(value.json())
         })
         .then (value => {
