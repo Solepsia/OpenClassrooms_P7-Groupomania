@@ -1,7 +1,8 @@
 import { Button, TextField } from "@mui/material";
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
-import saveUserID from './auth-service/saveUserID'
+import saveUserID from './auth-service/saveUserID';
+import { useNavigate } from 'react-router';
 
 function LogIn ({ setToken }) {
     const defaultValues = {
@@ -9,7 +10,7 @@ function LogIn ({ setToken }) {
         password: ""
     }
     const [formValues, setFormValues] = useState(defaultValues)
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -36,8 +37,7 @@ function LogIn ({ setToken }) {
             saveUserID(value.userId)
             setToken(value.token)
             if (value) {
-                // navigate('/')
-                window.location.href = "/";
+                navigate('/')
             }
         })
         .catch (err => {

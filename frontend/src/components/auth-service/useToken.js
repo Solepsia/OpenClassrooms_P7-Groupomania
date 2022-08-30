@@ -4,8 +4,14 @@ import saveToken from './saveToken';
 
 function useToken() {
   const [token, setToken] = useState(getToken());
+
+  const editToken = (token) => {
+    setToken(token);
+    saveToken(token);
+  }
+  
   return {
-    setToken: saveToken,
+    setToken: editToken,
     token
   }
 }
