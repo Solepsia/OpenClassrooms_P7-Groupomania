@@ -94,11 +94,25 @@ exports.likePost = (req, res, next) => {
                         post.likes++;
                         post.usersLiked.push(req.body.userId);
                     }
+                    else if (!(post.usersLiked.includes(req.body.userId)) && post.usersDisliked.includes(req.body.userId)) {
+                        post.likes++;
+                        post.usersLiked.push(req.body.userId);
+                        const userIndex = post.usersDisliked.findIndex(id => id == req.body.userId);
+                        post.usersDisliked.splice(userIndex, 1);
+                        post.dislikes--;
+                    }
                     break;
                 case parseInt(-1):
                     if (!(post.usersDisliked.includes(req.body.userId)) && !(post.usersLiked.includes(req.body.userId))) {
                         post.dislikes++;
                         post.usersDisliked.push(req.body.userId);
+                    }
+                    else if (!(post.usersDisliked.includes(req.body.userId)) && post.usersLiked.includes(req.body.userId)) {
+                        post.dislikes++;
+                        post.usersDisliked.push(req.body.userId);
+                        const userIndex = post.usersLiked.findIndex(id => id == req.body.userId);
+                        post.usersLiked.splice(userIndex, 1);
+                        post.likes--;
                     }
                     break;
                 case parseInt(0):

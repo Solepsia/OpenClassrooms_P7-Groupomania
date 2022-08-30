@@ -1,5 +1,5 @@
 import { Button, Card } from "@mui/material";
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { UserContext } from "./App";
 import getToken from "./auth-service/getToken";
 import getUserID from './auth-service/getUserID';
@@ -7,7 +7,7 @@ import Like from "./Like";
 
 function Post ({ post, setEditable }) {
 
-    const user = useContext(UserContext)
+    const user = useContext(UserContext);
     
     const handleRemovePost = (event) => {
         event.preventDefault();
@@ -41,7 +41,7 @@ function Post ({ post, setEditable }) {
         return (
             <Card className='post' variant='outlined'>
                 <Card className='post__content'>{post.content}</Card>
-                <Like post={post} />
+                <Like post={post} setEditable={setEditable}/>
                 <Button onClick={handleEditPost}>EDIT</Button>
                 <Button onClick={handleRemovePost}>REMOVE</Button>
             </Card>
@@ -50,7 +50,7 @@ function Post ({ post, setEditable }) {
         return (
             <Card className='post' variant='outlined'>
                 <Card className='post__content'>{post.content}</Card>
-                <Like post={post} />
+                <Like post={post} setEditable={setEditable}/>
             </Card>
         )
     }
