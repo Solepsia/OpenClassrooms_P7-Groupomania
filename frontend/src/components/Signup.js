@@ -1,4 +1,4 @@
-import { Button, TextField, InputAdornment } from "@mui/material";
+import { Button, TextField, InputAdornment, Box, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -44,44 +44,74 @@ function SignUp () {
     }
 
     return (
-    <form onSubmit={handleSubmit}>
-        <TextField
-            id="emailInput"
-            name="email"
-            label="Email"
-            type="email"
-            value={formValues.name}
-            onChange={handleInputChange}
-            required
-            InputProps={{
-                startAdornment: (
-                    <InputAdornment position="start">
-                        <AccountCircleIcon />
-                    </InputAdornment>
-                ),
-            }}
-            variant="standard"
-            
-        />
-        <TextField
-            id="passwordInput"
-            name="password"
-            label="Password"
-            type="password"
-            value={formValues.password}
-            onChange={handleInputChange}
-            required
-            InputProps={{
-                startAdornment: (
-                    <InputAdornment position="start">
-                        <KeyIcon />
-                    </InputAdornment>
-                ),
-            }}
-            variant="standard"
-        />
-        <Button type="submit">SIGN UP</Button>
-    </form>
+        <Box
+        sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            mr: 1,
+            ml: 1
+        }}
+    >
+        <Typography component="h1" variant="h5">
+          SIGN UP
+        </Typography>
+        <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate sx={{ mt: 1 }}
+        >
+            <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                value={formValues.name}
+                onChange={handleInputChange}
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start">
+                            <AccountCircleIcon />
+                        </InputAdornment>
+                    ),
+                }}
+                variant="standard"
+            />
+            <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                value={formValues.password}
+                onChange={handleInputChange}
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start">
+                            <KeyIcon />
+                        </InputAdornment>
+                    ),
+                }}
+                variant="standard"
+            />
+            <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+            >
+              SIGN UP
+            </Button>
+        </Box>
+    </Box>
     )
 }
 
