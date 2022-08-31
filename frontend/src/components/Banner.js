@@ -10,7 +10,7 @@ function Banner() {
     const handleLogOut = (event) => {
         event.preventDefault();
         localStorage.clear();
-        window.location.reload();
+        window.location.href = '/';
     }
 
     const buttons = user.token ?
