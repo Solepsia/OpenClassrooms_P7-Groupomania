@@ -1,7 +1,9 @@
-import { Button, TextField } from "@mui/material";
+import { Button, InputAdornment, TextField } from "@mui/material";
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import KeyIcon from '@mui/icons-material/Key';
 
 function LogIn ({ setUser }) {
     const defaultValues = {
@@ -47,26 +49,44 @@ function LogIn ({ setUser }) {
     }
 
     return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}
+    direction="column">
         <TextField
             id="emailInput"
             name="email"
-            label="E-Mail"
+            label="Email"
             type="email"
             value={formValues.name}
             onChange={handleInputChange}
             required
+            InputProps={{
+                startAdornment: (
+                    <InputAdornment position="start">
+                        <AccountCircleIcon />
+                    </InputAdornment>
+                ),
+            }}
+            variant="standard"
+            
         />
         <TextField
             id="passwordInput"
             name="password"
-            label="Mot de passe"
+            label="Password"
             type="password"
             value={formValues.password}
             onChange={handleInputChange}
             required
+            InputProps={{
+                startAdornment: (
+                    <InputAdornment position="start">
+                        <KeyIcon />
+                    </InputAdornment>
+                ),
+            }}
+            variant="standard"
         />
-        <Button type="submit">CONNEXION</Button>
+        <Button type="submit">LOG IN</Button>
     </form>
     )
 }

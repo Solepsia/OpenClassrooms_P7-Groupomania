@@ -1,6 +1,8 @@
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, InputAdornment } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import KeyIcon from '@mui/icons-material/Key';
 
 function SignUp () {
     const defaultValues = {
@@ -46,20 +48,39 @@ function SignUp () {
         <TextField
             id="emailInput"
             name="email"
-            label="E-Mail"
+            label="Email"
             type="email"
             value={formValues.name}
             onChange={handleInputChange}
+            required
+            InputProps={{
+                startAdornment: (
+                    <InputAdornment position="start">
+                        <AccountCircleIcon />
+                    </InputAdornment>
+                ),
+            }}
+            variant="standard"
+            
         />
         <TextField
             id="passwordInput"
             name="password"
-            label="Mot de passe"
+            label="Password"
             type="password"
             value={formValues.password}
             onChange={handleInputChange}
+            required
+            InputProps={{
+                startAdornment: (
+                    <InputAdornment position="start">
+                        <KeyIcon />
+                    </InputAdornment>
+                ),
+            }}
+            variant="standard"
         />
-        <Button type="submit">INSCRIPTION</Button>
+        <Button type="submit">SIGN UP</Button>
     </form>
     )
 }
