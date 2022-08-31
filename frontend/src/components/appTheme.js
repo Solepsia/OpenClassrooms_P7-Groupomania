@@ -10,21 +10,21 @@ export let appTheme = createTheme({
             }
         }
     },
-    // palette: {
-    //     primary: {
-    //         main: '#FD2D01'
-    //     },
-    //     secondary: {
-    //         main: '#FFD7D7'
-    //     }
-    // },
+    palette: {
+        primary: {
+            main: '#FD2D01'
+        },
+        secondary: {
+            main: '#FFD7D7'
+        }
+    },
     typography: {
         fontFamily: 'Lato',
         body1: {
             fontWeight: 500
         },
         button: {
-            fontWeight: 1000
+            fontWeight: 600
         }
     }
 })
