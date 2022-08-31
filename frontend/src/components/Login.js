@@ -49,8 +49,7 @@ function LogIn ({ setUser }) {
     }
 
     return (
-    <form onSubmit={handleSubmit}
-    direction="column">
+    <form onSubmit={handleSubmit}>
         <TextField
             id="emailInput"
             name="email"

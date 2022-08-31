@@ -39,41 +39,27 @@ function Post ({ post, setEditable }) {
         setEditable({id: post._id, isEditable: true});
     }
 
-    if (user.isAdmin || post.userId === user.userId) {
-        return (
-            <Card xs={8} variant='outlined'>
-                {post.imageUrl && (
-                    <CardMedia alt={post.imageUrl} component="img" image={post.imageUrl} />
-                )}
-                <CardContent>
-                    <Typography color="text.secondary">
-                        {post.content}
-                    </Typography>
-                </CardContent>
-                <CardActions disableSpacing>
-                    <Like post={post} setEditable={setEditable}/>
-                    <Button onClick={handleEditPost}>EDIT</Button>
-                    <Button onClick={handleRemovePost}>REMOVE</Button>
-                </CardActions>
-            </Card>
-        )
-    } else {
-        return (
-            <Card xs={8} variant='outlined'>
-                {post.imageUrl && (
-                    <CardMedia alt={post.imageUrl} component="img" image={post.imageUrl} />
-                )}
-                <CardContent>
-                    <Typography color="text.secondary">
-                        {post.content}
-                    </Typography>
-                </CardContent>
-                <CardActions disableSpacing>
-                    <Like post={post} setEditable={setEditable}/>
-                </CardActions>
-            </Card>
-        )
+    const buttons = (user.isAdmin || post.userId === user.userId) &&
+        <>
+            <Button onClick={handleEditPost}>EDIT</Button>
+            <Button onClick={handleRemovePost}>REMOVE</Button>
+        </>
+
+    const postCard =
+        <Card xs={8} variant='outlined'>
+            {post.imageUrl && (
+                <CardMedia alt={post.imageUrl} component="img" image={post.imageUrl} />
+            )}
+            <CardContent>
+                {post.content}
+            </CardContent>
+            <CardActions disableSpacing>
+                <Like post={post} setEditable={setEditable}/>
+                {buttons}
+            </CardActions>
+        </Card>
+
+    return postCard
     }
-}
 
 export default Post
