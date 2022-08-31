@@ -1,4 +1,4 @@
-import { Button, IconButton, TextField, Card, InputAdornment } from "@mui/material";
+import { Button, IconButton, TextField, Card, InputAdornment, Box } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { UserContext } from "./App";
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
@@ -60,29 +60,43 @@ function EditPost ({ post, setEditable }) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>`
-            <Card item xs={8} className='post' variant='outlined'>
-            <CardContent className='post__content'>
-                <TextField
+        <Box
+        sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            mr: 1,
+            ml: 1,
+            width: '90%'
+        }}
+    >
+        <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1, width: '90%', minWidth: 350 }}
+        >
+            <Box
+                component={Card}
+                sx={{ flexGrow: 1, mr: 1, ml: 1, width: '100%' }}
+                variant='outlined'
+            >
+            <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    multiline
                     id="content"
+                    label="Post content"
                     name="content"
-                    label="Contenu de la publication"
-                    type="text"
+                    autoComplete="content"
                     defaultValue={post.content}
+                    autoFocus
                     value={formValues.name}
                     onChange={handleInputChange}
-                    required
                     variant="standard"
-                    multiline
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
-                                <EditIcon />
-                            </InputAdornment>
-                        ),
-                    }}
                 />
-            </CardContent>
             { (post.imageUrl && !image) &&
                 <CardMedia alt={post.imageUrl} component="img" width={"250px"} image={post.imageUrl} />
             }
@@ -94,8 +108,9 @@ function EditPost ({ post, setEditable }) {
                 <AddPhotoAlternateIcon color="inherit"/>
             </IconButton>
             <Button type="submit">EDIT POST</Button>
-            </Card>
-        </form>
+            </Box>
+        </Box>
+        </Box>
         )
 }
 
