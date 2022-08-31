@@ -61,7 +61,7 @@ function LogIn ({ setUser }) {
             }}
         >
             <Typography component="h1" variant="h5">
-              LOG IN
+                LOG IN
             </Typography>
             <Box
                 component="form"
@@ -114,10 +114,10 @@ function LogIn ({ setUser }) {
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
                 >
-                  LOG IN
+                    LOG IN
                 </Button>
                 <Link to='/signup' variant="body2">
-                  {"Don't have an account? Sign Up"}
+                    {"Don't have an account? Sign Up"}
                 </Link>
             </Box>
         </Box>

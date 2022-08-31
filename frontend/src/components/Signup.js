@@ -55,7 +55,7 @@ function SignUp () {
             }}
         >
             <Typography component="h1" variant="h5">
-              SIGN UP
+                SIGN UP
             </Typography>
             <Box
                 component="form"
@@ -108,7 +108,7 @@ function SignUp () {
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
                 >
-                  SIGN UP
+                    SIGN UP
                 </Button>
             </Box>
         </Box>
