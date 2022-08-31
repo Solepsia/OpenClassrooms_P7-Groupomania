@@ -1,10 +1,9 @@
-import { Button, IconButton, TextField } from "@mui/material";
+import { Button, IconButton, TextField, Card } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { UserContext } from "./App";
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
 
 function EditPost ({ post, setEditable }) {
 
@@ -60,7 +59,8 @@ function EditPost ({ post, setEditable }) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>`
+            <Card item xs={8} className='post' variant='outlined'>
             <CardContent className='post__content'>
                 <TextField
                     id="content"
@@ -84,6 +84,7 @@ function EditPost ({ post, setEditable }) {
                 <AddPhotoAlternateIcon color="inherit"/>
             </IconButton>
             <Button type="submit">MODIFIER</Button>
+            </Card>
         </form>
         )
 }

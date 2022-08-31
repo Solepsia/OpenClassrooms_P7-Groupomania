@@ -39,9 +39,9 @@ function Post ({ post, setEditable }) {
         setEditable({id: post._id, isEditable: true});
     }
 
-    if (post.userId === user.userId) {
+    if (user.isAdmin || post.userId === user.userId) {
         return (
-            <Card sx={{ maxWidth: 345 }} className='post' variant='outlined'>
+            <Card xs={8} className='post' variant='outlined'>
                 {post.imageUrl && (
                     <CardMedia alt={post.imageUrl} component="img" height="194" image={post.imageUrl} />
                 )}
@@ -59,7 +59,7 @@ function Post ({ post, setEditable }) {
         )
     } else {
         return (
-            <Card sx={{ maxWidth: 345 }} className='post' variant='outlined'>
+            <Card xs={8} className='post' variant='outlined'>
                 {post.imageUrl && (
                     <CardMedia alt={post.imageUrl} component="img" height="194" image={post.imageUrl} />
                 )}
