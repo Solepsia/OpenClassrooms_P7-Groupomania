@@ -17,29 +17,29 @@ function BannerLoggedIn() {
     }
 
     return (
-    <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
-            <Toolbar>
-                <IconButton
-                    item
-                    size="large"
-                    edge="start"
-                    color="inherit"
-                    aria-label="menu"
-                    sx={{ mr: 2 }}
-                >
-                    <Link to='/'>
-                        <img src={logo} alt='Groupomania' className='logo' />
-                    </Link>
-                </IconButton>
-                <Box sx={{ flexGrow: 1 }}/>
-                <Typography variant="button">
-                    <Button color="inherit" onClick={handleLogOut}>LOG OUT</Button>
-                    <Button component={Link} to='/newPost' color="inherit">NEW POST</Button>
-                </Typography>
-            </Toolbar>
-        </AppBar>
-    </Box>
+        <Box sx={{ flexGrow: 1 }}>
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton
+                        item
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{ mr: 2 }}
+                    >
+                        <Link to='/'>
+                            <img src={logo} alt='Groupomania' className='logo' />
+                        </Link>
+                    </IconButton>
+                    <Box sx={{ flexGrow: 1 }}/>
+                    <Typography variant="button">
+                        <Button color="inherit" onClick={handleLogOut}>LOG OUT</Button>
+                        <Button component={Link} to='/newPost' color="inherit">NEW POST</Button>
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+        </Box>
     )
 }
 
