@@ -1,4 +1,4 @@
-import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
+import { Box, Button, IconButton, InputAdornment, TextField, Typography } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./App";
@@ -57,35 +57,57 @@ function NewPost () {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <TextField
-                id="content"
-                name="content"
-                type="text"
-                value={formValues.name}
-                onChange={handleInputChange}
-                required
-                variant="standard"
-                multiline
-                InputProps={{
-                    startAdornment: (
-                        <InputAdornment position="start">
-                            <EditIcon />
-                        </InputAdornment>
-                    ),
-                }}
-            />
-            <IconButton color="primary" aria-label="upload picture" component="label">
-                <input hidden accept="image/*" type="file" onChange={handleAddImages} />
-                <AddPhotoAlternateIcon color="inherit"/>
-            </IconButton>
-            {image && (
-                <img alt={image.name} width={"250px"} src={URL.createObjectURL(image)} />
-            )}
-            
-            <Button type="submit">SHARE</Button>
-        </form>
-        )
+        <Box
+            sx={{
+                marginTop: 8,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                mr: 1,
+                ml: 1,
+            }}
+        >
+            <Typography component="h1" variant="h5">
+                NEW POST
+            </Typography>
+            <Box
+                component="form"
+                onSubmit={handleSubmit}
+                noValidate
+                sx={{ mt: 1 }}
+            >
+                <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    multiline
+                    id="content"
+                    label="Post content"
+                    name="content"
+                    autoComplete="content"
+                    autoFocus
+                    value={formValues.name}
+                    onChange={handleInputChange}
+                    variant="standard"
+                />
+                <IconButton color="primary" aria-label="upload picture" component="label">
+                    <input hidden accept="image/*" type="file" onChange={handleAddImages} />
+                    <AddPhotoAlternateIcon color="inherit"/>
+                </IconButton>
+                {image && (
+                    <img alt={image.name} width={"250px"} src={URL.createObjectURL(image)} />
+                )}            
+                <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                >
+                    SHARE
+                </Button>
+            </Box>
+        </Box>
+    )
 }
 
 export default NewPost
