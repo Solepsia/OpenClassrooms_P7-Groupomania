@@ -42,6 +42,7 @@ function Timeline () {
             rowSpacing={2}
             xs={12}
             lg={6}
+            sx={{ margin: 1 }}
             >
                 {postList.map( (post) => {
                     if (editable.id === post._id && editable.isEditable) {
