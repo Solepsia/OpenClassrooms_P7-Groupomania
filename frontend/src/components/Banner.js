@@ -1,15 +1,50 @@
+import { AppBar, Box, Button, IconButton, Toolbar } from '@mui/material';
 import React, { useContext } from 'react'
 import { UserContext } from './App';
-import BannerLoggedIn from './banner/Banner-logged-in';
-import BannerNotLoggedIn from './banner/Banner-not-logged-in';
+import logo from '../assets/icon-left-font-monochrome-white.svg'
+import { Link } from 'react-router-dom';
 
 function Banner() {
     const user = useContext(UserContext);
 
-    if (user.token) {
-        return <BannerLoggedIn />
+    const handleLogOut = (event) => {
+        event.preventDefault();
+        localStorage.clear();
+        window.location.reload();
     }
-    return <BannerNotLoggedIn />
+
+    const buttons = user.token ?
+            <>
+                <Button color="inherit" onClick={handleLogOut}>LOG OUT</Button>
+                <Button component={Link} to='/newPost' color="inherit">NEW POST</Button>
+            </>
+        : 
+            <>
+                <Button component={Link} to='/login' color="inherit">LOG IN</Button>
+                <Button component={Link} to='/signup' color="inherit">SIGN UP</Button>
+            </>
+
+    const bannerBox =
+        <Box sx={{ flexGrow: 1 }}>
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{ mr: 2 }}
+                    >
+                        <Link to='/'>
+                            <img src={logo} alt='Groupomania' className='logo' />
+                        </Link>
+                    </IconButton>
+                    <Box sx={{ flexGrow: 1 }}/>
+                    { buttons }
+                </Toolbar>
+            </AppBar>
+        </Box>
+
+    return bannerBox
 }
 
 export default Banner
