@@ -14,6 +14,10 @@ You need to have [nodejs](https://nodejs.org/en/download/) and npm installed on 
 
 Step 1: Clone this repository
 
+```
+git clone https://github.com/Solepsia/OpenClassrooms_P7-Groupomania.git P7_Groupomania
+```
+
 Step 2: Use npm to install the dependencies in both backend and frontend
 
 ```bash
