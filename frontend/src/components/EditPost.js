@@ -11,7 +11,7 @@ function EditPost ({ post, setEditable }) {
     const user = useContext(UserContext);
 
     const defaultValues = {
-        content: "",
+        content: post.content,
     }
     const [formValues, setFormValues] = useState(defaultValues)
     const [image, setImage] = useState()
