@@ -74,7 +74,7 @@ function NewPost () {
                 component="form"
                 onSubmit={handleSubmit}
                 noValidate
-                sx={{ mt: 1 }}
+                sx={{ mt: 1, width: '75%', minWidth: 350 }}
             >
                 <TextField
                     margin="normal"
