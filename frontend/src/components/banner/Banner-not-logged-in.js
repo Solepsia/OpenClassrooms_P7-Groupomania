@@ -23,6 +23,7 @@ function BannerNotLoggedIn() {
                         <img src={logo} alt='Groupomania' className='logo' />
                     </Link>
                 </IconButton>
+                <Box sx={{ flexGrow: 1 }}/>
                 <Button component={Link} to='/login' color="inherit">LOG IN</Button>
                 <Button component={Link} to='/signup' color="inherit">SIGN UP</Button>
             </Toolbar>

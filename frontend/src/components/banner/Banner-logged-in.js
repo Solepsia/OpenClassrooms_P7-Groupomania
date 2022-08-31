@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
+import { Typography } from '@mui/material';
 
 function BannerLoggedIn() {
     
@@ -20,6 +21,7 @@ function BannerLoggedIn() {
         <AppBar position="static">
             <Toolbar>
                 <IconButton
+                    item
                     size="large"
                     edge="start"
                     color="inherit"
@@ -30,8 +32,11 @@ function BannerLoggedIn() {
                         <img src={logo} alt='Groupomania' className='logo' />
                     </Link>
                 </IconButton>
-                <Button color="inherit" onClick={handleLogOut}>LOG OUT</Button>
-                <Button component={Link} to='/newPost' color="inherit">NEW POST</Button>
+                <Box sx={{ flexGrow: 1 }}/>
+                <Typography variant="button">
+                    <Button color="inherit" onClick={handleLogOut}>LOG OUT</Button>
+                    <Button component={Link} to='/newPost' color="inherit">NEW POST</Button>
+                </Typography>
             </Toolbar>
         </AppBar>
     </Box>
