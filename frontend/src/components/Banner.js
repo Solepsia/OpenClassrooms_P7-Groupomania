@@ -35,7 +35,12 @@ function Banner() {
                         sx={{ mr: 2 }}
                     >
                         <Link to='/'>
-                            <img src={logo} alt='Groupomania' className='logo' />
+                            <Box
+                                component="img"
+                                src={logo}
+                                alt='Groupomania'
+                                sx={{ maxWidth: 200 }}
+                            />
                         </Link>
                     </IconButton>
                     <Box sx={{ flexGrow: 1 }}/>
