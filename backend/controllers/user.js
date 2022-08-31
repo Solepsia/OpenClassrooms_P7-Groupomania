@@ -34,7 +34,8 @@ exports.login = (req, res, next) => {
                             { userId: user._id },
                             process.env.JWT,
                             { expiresIn: '24h' }
-                        )
+                        ),
+                        isAdmin: user.isAdmin ? true : false
                     });
                 })
                 .catch(error => res.status(500).json({ error }));

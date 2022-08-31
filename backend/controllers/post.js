@@ -44,7 +44,7 @@ exports.updatePost = (req, res, next) => {
     delete newPostObject._userId;
     Post.findOne({ _id: req.params.id })
         .then((post) => {
-            if (post.userId != req.auth.userId) {
+            if (!req.auth.isAdmin && post.userId != req.auth.userId) {
                 res.status(403).json({ message: 'Unauthorized request' });
             } else {
                 if (post.imageUrl && req.file) {
@@ -66,7 +66,7 @@ exports.updatePost = (req, res, next) => {
 exports.removePost = (req, res, next) => {
     Post.findOne({ _id: req.params.id })
         .then(post => {
-            if (post.userId != req.auth.userId) {
+            if (!req.auth.isAdmin && post.userId != req.auth.userId) {
                 res.status(401).json({ message: 'Unauthorized' });
             } else {
                 if (post.imageUrl) {
