@@ -1,6 +1,10 @@
-import { Button, TextField } from "@mui/material";
+import { Button, IconButton, TextField } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { UserContext } from "./App";
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 
 function EditPost ({ post, setEditable }) {
 
@@ -10,6 +14,7 @@ function EditPost ({ post, setEditable }) {
         content: "",
     }
     const [formValues, setFormValues] = useState(defaultValues)
+    const [image, setImage] = useState()
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -21,16 +26,23 @@ function EditPost ({ post, setEditable }) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        const formData = new FormData();
+
+        let postCopy = {...post}
+        postCopy.content = formValues.content
+        formData.append('post', JSON.stringify(postCopy))
+        if (image) {
+            formData.append('file', image)
+        }
         fetch(`http://localhost:4200/api/post/${post._id}`, {
             method: 'PUT',
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${user.token}`
             },
-            body: JSON.stringify(formValues)
+            body: formData
         })
         .then (value => {
+            console.log('res: ', value)
             return(value.json())
         })
         .then (value => {
@@ -43,18 +55,34 @@ function EditPost ({ post, setEditable }) {
         })
     }
 
+    const handleAddImages = (event) => {
+        setImage(event.target.files[0])
+    }
+
     return (
         <form onSubmit={handleSubmit}>
-            <TextField
-                id="content"
-                name="content"
-                label="Contenu de la publication"
-                type="text"
-                defaultValue={post.content}
-                value={formValues.name}
-                onChange={handleInputChange}
-                required
-            />
+            <CardContent className='post__content'>
+                <TextField
+                    id="content"
+                    name="content"
+                    label="Contenu de la publication"
+                    type="text"
+                    defaultValue={post.content}
+                    value={formValues.name}
+                    onChange={handleInputChange}
+                    required
+                />
+            </CardContent>
+            { (post.imageUrl && !image) &&
+                <CardMedia alt={post.imageUrl} component="img" width={"250px"} image={post.imageUrl} />
+            }
+            { image &&
+                <CardMedia alt={image.name} component="img" width={"250px"} image={URL.createObjectURL(image)} />
+            }
+            <IconButton color="primary" aria-label="upload picture" component="label">
+                <input hidden accept="image/*" type="file" onChange={handleAddImages} />
+                <AddPhotoAlternateIcon color="inherit"/>
+            </IconButton>
             <Button type="submit">MODIFIER</Button>
         </form>
         )

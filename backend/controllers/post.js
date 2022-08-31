@@ -39,7 +39,7 @@ exports.updatePost = (req, res, next) => {
     const newPostObject = req.file ? {
         ...JSON.parse(req.body.post),
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    } : { ...req.body };
+    } : { ...JSON.parse(req.body.post) };
 
     delete newPostObject._userId;
     Post.findOne({ _id: req.params.id })
