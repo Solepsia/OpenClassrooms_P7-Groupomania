@@ -49,9 +49,21 @@ function Post ({ post, setEditable }) {
         </>
 
     const postCard =
-        <Box component={Card} sx={{ flexGrow: 1 }} variant='outlined'>
+        <Box
+            component={Card}
+            sx={{ flexGrow: 1 }}
+            variant='outlined'
+        >
             {post.imageUrl && (
-                <CardMedia alt={post.imageUrl} component="img" image={post.imageUrl} />
+                <CardMedia
+                    alt={post.imageUrl}
+                    component="img"
+                    image={post.imageUrl}
+                    sx={{
+                        objectFit: 'scale-down',
+                        maxHeight: 300
+                    }}
+                />
             )}
             <CardContent>
                 {post.content}
