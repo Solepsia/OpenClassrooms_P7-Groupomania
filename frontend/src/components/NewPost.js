@@ -1,8 +1,9 @@
-import { Button, IconButton, TextField } from "@mui/material";
+import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./App";
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import EditIcon from '@mui/icons-material/Edit';
 
 function NewPost () {
 
@@ -60,11 +61,19 @@ function NewPost () {
             <TextField
                 id="content"
                 name="content"
-                label="Contenu de la publication"
                 type="text"
                 value={formValues.name}
                 onChange={handleInputChange}
                 required
+                variant="standard"
+                multiline
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start">
+                            <EditIcon />
+                        </InputAdornment>
+                    ),
+                }}
             />
             <IconButton color="primary" aria-label="upload picture" component="label">
                 <input hidden accept="image/*" type="file" onChange={handleAddImages} />

@@ -1,6 +1,6 @@
-import { Button, Card } from "@mui/material";
+import { Button, Card, CardContent } from "@mui/material";
 import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
+// import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 import React, { useContext } from 'react';
@@ -41,12 +41,12 @@ function Post ({ post, setEditable }) {
 
     if (user.isAdmin || post.userId === user.userId) {
         return (
-            <Card xs={8} className='post' variant='outlined'>
+            <Card xs={8} variant='outlined'>
                 {post.imageUrl && (
-                    <CardMedia alt={post.imageUrl} component="img" height="194" image={post.imageUrl} />
+                    <CardMedia alt={post.imageUrl} component="img" image={post.imageUrl} />
                 )}
-                <CardContent className='post__content'>
-                    <Typography variant="body2" color="text.secondary">
+                <CardContent>
+                    <Typography color="text.secondary">
                         {post.content}
                     </Typography>
                 </CardContent>
@@ -59,12 +59,12 @@ function Post ({ post, setEditable }) {
         )
     } else {
         return (
-            <Card xs={8} className='post' variant='outlined'>
+            <Card xs={8} variant='outlined'>
                 {post.imageUrl && (
-                    <CardMedia alt={post.imageUrl} component="img" height="194" image={post.imageUrl} />
+                    <CardMedia alt={post.imageUrl} component="img" image={post.imageUrl} />
                 )}
-                <CardContent className='post__content'>
-                    <Typography variant="body2" color="text.secondary">
+                <CardContent>
+                    <Typography color="text.secondary">
                         {post.content}
                     </Typography>
                 </CardContent>

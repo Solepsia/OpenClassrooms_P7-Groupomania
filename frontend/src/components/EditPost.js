@@ -1,9 +1,10 @@
-import { Button, IconButton, TextField, Card } from "@mui/material";
+import { Button, IconButton, TextField, Card, InputAdornment } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { UserContext } from "./App";
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
+import EditIcon from '@mui/icons-material/Edit';
 
 function EditPost ({ post, setEditable }) {
 
@@ -71,6 +72,15 @@ function EditPost ({ post, setEditable }) {
                     value={formValues.name}
                     onChange={handleInputChange}
                     required
+                    variant="standard"
+                    multiline
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <EditIcon />
+                            </InputAdornment>
+                        ),
+                    }}
                 />
             </CardContent>
             { (post.imageUrl && !image) &&
@@ -83,7 +93,7 @@ function EditPost ({ post, setEditable }) {
                 <input hidden accept="image/*" type="file" onChange={handleAddImages} />
                 <AddPhotoAlternateIcon color="inherit"/>
             </IconButton>
-            <Button type="submit">MODIFIER</Button>
+            <Button type="submit">EDIT POST</Button>
             </Card>
         </form>
         )

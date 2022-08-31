@@ -28,14 +28,38 @@ function Timeline () {
     }, [editable]);
 
     return (
-        <Grid container direction="column" justifyContent="space-between" alignItems="center" rowSpacing={2} >
-            {postList.map( (post) => {
-                if (editable.id === post._id && editable.isEditable) {
-                    return (<EditPost key={post._id} post={post} setEditable={setEditable}/>)
-                } else {
-                    return (<Post key={post._id} post={post} setEditable={setEditable}/>)
-                }
-            })}
+        <Grid
+        container
+        alignItems="center"
+        justifyContent="space-around"
+        >
+            <Grid
+            item
+            container
+            direction="column"
+            justifyContent="space-between"
+            alignItems="center"
+            rowSpacing={2}
+            xs={6}
+            >
+                {postList.map( (post) => {
+                    if (editable.id === post._id && editable.isEditable) {
+                        return (<Grid key={post._id} item xs={12} md={6}>
+                                    <EditPost
+                                    post={post}
+                                    setEditable={setEditable}
+                                    />
+                                </Grid>)
+                    } else {
+                        return (<Grid key={post._id} item xs={12} md={6}>
+                                    <Post
+                                    post={post}
+                                    setEditable={setEditable}
+                                    />
+                                </Grid>)
+                    }
+                })}
+            </Grid>
         </Grid>
     )
 }
