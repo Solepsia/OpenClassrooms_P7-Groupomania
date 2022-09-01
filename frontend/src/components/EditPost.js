@@ -1,10 +1,8 @@
-import { Button, IconButton, TextField, Card, InputAdornment, Box } from "@mui/material";
+import { Button, IconButton, TextField, Card, Box } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { UserContext } from "./App";
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import EditIcon from '@mui/icons-material/Edit';
 
 function EditPost ({ post, setEditable }) {
 
@@ -42,7 +40,6 @@ function EditPost ({ post, setEditable }) {
             body: formData
         })
         .then (value => {
-            console.log('res: ', value)
             return(value.json())
         })
         .then (value => {
@@ -61,57 +58,76 @@ function EditPost ({ post, setEditable }) {
 
     return (
         <Box
-        sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            mr: 1,
-            ml: 1,
-            width: '90%'
-        }}
-    >
-        <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1, width: '90%', minWidth: 350 }}
+            sx={{
+                marginTop: 8,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                width: 1
+            }}
         >
             <Box
-                component={Card}
-                sx={{ flexGrow: 1, mr: 1, ml: 1, width: '100%' }}
-                variant='outlined'
+                component="form"
+                onSubmit={handleSubmit}
+                noValidate
+                sx={{ mt: 1, width: 1, minWidth: 350 }}
             >
-            <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    multiline
-                    id="content"
-                    label="Post content"
-                    name="content"
-                    autoComplete="content"
-                    defaultValue={post.content}
-                    autoFocus
-                    value={formValues.name}
-                    onChange={handleInputChange}
-                    variant="standard"
-                />
-            { (post.imageUrl && !image) &&
-                <CardMedia alt={post.imageUrl} component="img" width={"250px"} image={post.imageUrl} />
-            }
-            { image &&
-                <CardMedia alt={image.name} component="img" width={"250px"} image={URL.createObjectURL(image)} />
-            }
-            <IconButton color="primary" aria-label="upload picture" component="label">
-                <input hidden accept="image/*" type="file" onChange={handleAddImages} />
-                <AddPhotoAlternateIcon color="inherit"/>
-            </IconButton>
-            <Button type="submit">EDIT POST</Button>
+                <Box
+                    component={Card}
+                    sx={{ flexGrow: 1, width: 1 }}
+                    variant='outlined'
+                >
+                    { (post.imageUrl && !image) &&
+                        <CardMedia
+                            alt={post.imageUrl}
+                            component="img"
+                            image={post.imageUrl}
+                            sx={{
+                                objectFit: 'scale-down',
+                                maxHeight: 300
+                            }}
+                            />
+                    }
+                    { image &&
+                        <CardMedia
+                            alt={image.name}
+                            component="img"
+                            image={URL.createObjectURL(image)}
+                            sx={{
+                                objectFit: 'scale-down',
+                                maxHeight: 300
+                            }}
+                            />
+                    }
+                    <IconButton
+                        color="primary"
+                        aria-label="upload picture"
+                        component="label"
+                    >
+                        <input hidden accept="image/*" type="file" onChange={handleAddImages} />
+                        <AddPhotoAlternateIcon color="inherit"/>
+                    </IconButton>
+                    <Box component={TextField}
+                        margin="normal"
+                        required
+                        fullWidth
+                        multiline
+                        id="content"
+                        label="Post content"
+                        name="content"
+                        autoComplete="content"
+                        defaultValue={post.content}
+                        autoFocus
+                        value={formValues.name}
+                        onChange={handleInputChange}
+                        variant="standard"
+                        sx={{ width: 0.98, mr: 1, ml: 1 }}
+                    />
+                    <Button type="submit">EDIT POST</Button>
+                </Box>
             </Box>
         </Box>
-        </Box>
-        )
+    )
 }
 
 export default EditPost

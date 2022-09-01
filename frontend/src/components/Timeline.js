@@ -50,7 +50,7 @@ function Timeline () {
                                     component={Grid}
                                     item
                                     key={post._id}
-                                    sx={{ flexGrow: 1 }}
+                                    sx={{ flexGrow: 1, width: 1 }}
                                 >
                                     <EditPost
                                         post={post}
@@ -62,7 +62,7 @@ function Timeline () {
                                     component={Grid}
                                     item
                                     key={post._id}
-                                    sx={{ flexGrow: 1 }}
+                                    sx={{ flexGrow: 1, width: 1 }}
                                 >
                                     <Post
                                         post={post}
